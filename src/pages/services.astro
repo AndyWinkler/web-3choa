@@ -1,0 +1,205 @@
+---
+export const prerender = true;
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { createReader } from '@keystatic/core/reader';
+import keystaticConfig from '../../keystatic.config';
+
+const reader = createReader(process.cwd(), keystaticConfig);
+const services = await reader.singletons.services.read();
+
+const heroHeadline = services?.heroHeadline ?? 'Our Services';
+const heroSubline = services?.heroSubline ?? 'Comprehensive HOA management solutions tailored to your community\'s unique needs.';
+
+const pmHeadline = services?.pmHeadline ?? 'Property Management';
+const pmBody = services?.pmBody ?? 'We handle the full scope of community operations so your board can focus on big-picture goals. From running meetings to enforcing compliance, we keep your community running smoothly.';
+const pmBullets = services?.pmBullets?.length ? services.pmBullets : [
+  'Board & homeowner meetings — scheduling, facilitation, and minutes',
+  'Vendor & contract management',
+  'Insurance & compliance oversight',
+  'Routine and preventative maintenance coordination',
+  'Homeowner communication and portal management',
+];
+
+const acctHeadline = services?.acctHeadline ?? 'Accounting';
+const acctBody = services?.acctBody ?? 'Sound financial management is the backbone of a healthy HOA. We provide complete accounting services with full transparency and easy access for board members.';
+const acctBullets = services?.acctBullets?.length ? services.acctBullets : [
+  'Annual budget preparation and management',
+  'Accounts payable and receivable',
+  'Assessment collection and delinquency management',
+  'Bank reconciliation and financial reporting',
+  'Secure document storage via the Owner\'s Portal',
+];
+
+const ownersRepHeadline = services?.ownersRepHeadline ?? "Owner's Representative";
+const ownersRepBody = services?.ownersRepBody ?? 'When your community undertakes capital reserve projects, you need an experienced advocate in your corner. We manage the process from start to finish.';
+const ownersRepBullets = services?.ownersRepBullets?.length ? services.ownersRepBullets : [
+  'Capital reserve project management',
+  'Stakeholder collaboration and communication',
+  'Project fund oversight and disbursement',
+  'Scheduling and contractor coordination',
+  'Funding assistance and reserve study support',
+];
+
+const insuranceHeadline = services?.insuranceHeadline ?? 'Insurance Claims Assistance';
+const insuranceBody = services?.insuranceBody ?? 'Navigating insurance claims is complex. We guide your community through every step — from initial filing to repair coordination — so you get the outcome you deserve.';
+const insuranceBullets = services?.insuranceBullets?.length ? services.insuranceBullets : [
+  'Claims filing guidance and documentation',
+  'Adjuster coordination and advocacy',
+  'Repair vendor selection and oversight',
+  'Follow-up and resolution tracking',
+];
+---
+
+<Layout
+  title="Services — 3c HOA Management"
+  description="3c HOA Management offers property management, HOA accounting, owner representation, and insurance claims assistance in Utah."
+>
+  <Header />
+
+  {/* Hero */}
+  <section class="border-b border-border bg-secondary py-16 sm:py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <h1 class="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">{heroHeadline}</h1>
+        <p class="mt-6 text-lg text-muted-foreground">{heroSubline}</p>
+      </div>
+    </div>
+  </section>
+
+  {/* Property Management */}
+  <section id="property-management" class="py-20 sm:py-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-12 lg:grid-cols-2 lg:items-start">
+        <div>
+          <div class="mb-4 text-4xl">🏘️</div>
+          <h2 class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{pmHeadline}</h2>
+          <p class="mt-4 text-lg text-muted-foreground">{pmBody}</p>
+          <ul class="mt-8 space-y-3">
+            {pmBullets.map((point) => (
+              <li class="flex items-start gap-3">
+                <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-nav">✓</span>
+                <span class="text-sm text-muted-foreground">{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-border bg-secondary p-8 lg:p-12">
+          <p class="text-sm font-semibold text-foreground">Who it's for</p>
+          <div class="mt-4 space-y-3">
+            {['HOA Boards', 'Self-Managed Communities', 'Condo Associations', 'Planned Unit Developments'].map((a) => (
+              <div class="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">{a}</div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="border-t border-border" />
+
+  {/* Accounting */}
+  <section id="accounting" class="py-20 sm:py-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-12 lg:grid-cols-2 lg:items-start">
+        <div class="lg:order-2">
+          <div class="mb-4 text-4xl">📊</div>
+          <h2 class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{acctHeadline}</h2>
+          <p class="mt-4 text-lg text-muted-foreground">{acctBody}</p>
+          <ul class="mt-8 space-y-3">
+            {acctBullets.map((point) => (
+              <li class="flex items-start gap-3">
+                <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-nav">✓</span>
+                <span class="text-sm text-muted-foreground">{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-border bg-secondary p-8 lg:order-1 lg:p-12">
+          <p class="text-sm font-semibold text-foreground">What you get</p>
+          <div class="mt-4 space-y-3">
+            {['Monthly financial statements', 'Annual budget reports', 'Delinquency reports', 'Owner\'s Portal access'].map((a) => (
+              <div class="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">{a}</div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="border-t border-border" />
+
+  {/* Owner's Rep */}
+  <section id="owners-rep" class="py-20 sm:py-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-12 lg:grid-cols-2 lg:items-start">
+        <div>
+          <div class="mb-4 text-4xl">🤝</div>
+          <h2 class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{ownersRepHeadline}</h2>
+          <p class="mt-4 text-lg text-muted-foreground">{ownersRepBody}</p>
+          <ul class="mt-8 space-y-3">
+            {ownersRepBullets.map((point) => (
+              <li class="flex items-start gap-3">
+                <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-nav">✓</span>
+                <span class="text-sm text-muted-foreground">{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-border bg-secondary p-8 lg:p-12">
+          <p class="text-sm font-semibold text-foreground">Common projects</p>
+          <div class="mt-4 space-y-3">
+            {['Roofing & exterior repairs', 'Pool & amenity renovations', 'Road & parking resurfacing', 'Common area upgrades'].map((a) => (
+              <div class="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">{a}</div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="border-t border-border" />
+
+  {/* Insurance */}
+  <section id="insurance" class="py-20 sm:py-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-12 lg:grid-cols-2 lg:items-start">
+        <div class="lg:order-2">
+          <div class="mb-4 text-4xl">🛡️</div>
+          <h2 class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{insuranceHeadline}</h2>
+          <p class="mt-4 text-lg text-muted-foreground">{insuranceBody}</p>
+          <ul class="mt-8 space-y-3">
+            {insuranceBullets.map((point) => (
+              <li class="flex items-start gap-3">
+                <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-nav">✓</span>
+                <span class="text-sm text-muted-foreground">{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-border bg-secondary p-8 lg:order-1 lg:p-12">
+          <p class="text-sm font-semibold text-foreground">Claim types we assist with</p>
+          <div class="mt-4 space-y-3">
+            {['Storm & weather damage', 'Fire & water damage', 'Liability claims', 'Property damage'].map((a) => (
+              <div class="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">{a}</div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* CTA */}
+  <section class="bg-nav py-16">
+    <div class="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-white sm:text-3xl">Ready to get started?</h2>
+      <p class="mx-auto mt-4 max-w-xl text-base text-white/70">Tell us about your community and we'll put together a plan that fits.</p>
+      <a href="/contact" class="mt-8 inline-flex rounded-lg bg-primary px-8 py-3.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90">
+        Contact us
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

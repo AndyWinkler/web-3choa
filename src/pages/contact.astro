@@ -1,0 +1,167 @@
+---
+export const prerender = true;
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { createReader } from '@keystatic/core/reader';
+import keystaticConfig from '../../keystatic.config';
+
+const reader = createReader(process.cwd(), keystaticConfig);
+const site = await reader.singletons.site.read();
+
+const contactHeadline = site?.contactHeroHeadline ?? "Let's talk.";
+const contactSubline = site?.contactHeroSubline ?? "Questions about your community, our services, or getting started? Send us a note and we'll respond within one business day.";
+const successHeading = site?.contactSuccessHeading ?? 'Message received';
+const successBody = site?.contactSuccessBody ?? "We'll be in touch within one business day. Thank you!";
+---
+
+<Layout
+  title="Contact — 3c HOA Management"
+  description="Contact 3c HOA Management. Call (435) 250-4150 or send us a message — we respond within one business day."
+>
+  <Header />
+
+  <section class="border-b border-border bg-secondary py-16 sm:py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <h1 class="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">{contactHeadline}</h1>
+        <p class="mt-6 text-lg text-muted-foreground">{contactSubline}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 sm:py-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-12 lg:grid-cols-3">
+
+        {/* Contact info */}
+        <div class="space-y-6">
+          <div class="rounded-2xl border border-border bg-card p-6">
+            <p class="text-sm font-semibold text-foreground">Phone</p>
+            <a href="tel:+14352504150" class="mt-1 block text-lg font-medium text-primary hover:underline">(435) 250-4150</a>
+          </div>
+          <div class="rounded-2xl border border-border bg-card p-6">
+            <p class="text-sm font-semibold text-foreground">Office Hours</p>
+            <p class="mt-1 text-sm text-muted-foreground">Monday – Friday</p>
+            <p class="text-sm text-muted-foreground">9:00 AM – 5:00 PM</p>
+          </div>
+          <div class="rounded-2xl border border-border bg-card p-6">
+            <p class="text-sm font-semibold text-foreground">Homeowner Portal</p>
+            <p class="mt-1 text-sm text-muted-foreground">For maintenance requests, documents, and payments.</p>
+            <a href="https://app.buildinglink.com" target="_blank" rel="noreferrer" class="mt-3 inline-flex text-sm font-medium text-primary hover:underline">
+              Login to portal →
+            </a>
+          </div>
+        </div>
+
+        {/* Form */}
+        <div class="lg:col-span-2">
+          <form id="contact-form" method="POST" action="/api/contact" class="space-y-6">
+            <div class="grid gap-6 sm:grid-cols-2">
+              <div>
+                <label for="name" class="mb-1.5 block text-sm font-medium text-foreground">Full name</label>
+                <input type="text" id="name" name="name" required
+                  class="w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                  placeholder="Your name" />
+              </div>
+              <div>
+                <label for="email" class="mb-1.5 block text-sm font-medium text-foreground">Email address</label>
+                <input type="email" id="email" name="email" required
+                  class="w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                  placeholder="you@example.com" />
+              </div>
+            </div>
+
+            <div>
+              <label for="community" class="mb-1.5 block text-sm font-medium text-foreground">Community / HOA name <span class="text-muted-foreground">(optional)</span></label>
+              <input type="text" id="community" name="community"
+                class="w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                placeholder="Your community or HOA name" />
+            </div>
+
+            <div>
+              <label for="subject" class="mb-1.5 block text-sm font-medium text-foreground">Subject</label>
+              <select id="subject" name="subject"
+                class="w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+                <option value="">Select a topic…</option>
+                <option value="property-management">Property management services</option>
+                <option value="accounting">Accounting services</option>
+                <option value="owners-rep">Owner's representative</option>
+                <option value="insurance">Insurance claims assistance</option>
+                <option value="homeowner">Homeowner inquiry</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="message" class="mb-1.5 block text-sm font-medium text-foreground">Message</label>
+              <textarea id="message" name="message" rows={6} required
+                class="w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                placeholder="Tell us about your community or question…" />
+            </div>
+
+            <div id="form-error" class="hidden rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700"></div>
+
+            <button type="submit" id="submit-btn"
+              class="w-full rounded-lg bg-nav px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-50">
+              Send message
+            </button>
+          </form>
+
+          <div id="success-message" class="hidden rounded-xl border border-border bg-card p-10 text-center">
+            <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-success/10">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-success"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h2 class="text-lg font-semibold text-foreground">{successHeading}</h2>
+            <p class="mt-2 text-sm text-muted-foreground">{successBody}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const successMessage = document.getElementById('success-message');
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+  const errorDiv = document.getElementById('form-error');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!submitBtn) return;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    if (errorDiv) errorDiv.classList.add('hidden');
+
+    try {
+      const data = new FormData(form);
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        body: JSON.stringify(Object.fromEntries(data)),
+        headers: { 'Content-Type': 'application/json' },
+      });
+      if (res.ok) {
+        form.classList.add('hidden');
+        successMessage?.classList.remove('hidden');
+      } else {
+        const body = await res.json().catch(() => ({}));
+        if (errorDiv) {
+          errorDiv.textContent = (body as { error?: string }).error ?? 'Something went wrong. Please try again.';
+          errorDiv.classList.remove('hidden');
+        }
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send message';
+      }
+    } catch {
+      if (errorDiv) {
+        errorDiv.textContent = 'Network error. Please try again.';
+        errorDiv.classList.remove('hidden');
+      }
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send message';
+    }
+  });
+</script>

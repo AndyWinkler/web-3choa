@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-nav: var(--nav);
+  --color-nav-foreground: var(--nav-foreground);
+  --color-gold: var(--gold);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-soft: 0 1px 2px oklch(0.2 0.01 220 / 0.04), 0 4px 12px oklch(0.2 0.01 220 / 0.06);
+  --shadow-elevated: 0 8px 30px oklch(0.2 0.01 220 / 0.10), 0 2px 6px oklch(0.2 0.01 220 / 0.04);
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.18 0.005 280);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.005 280);
+
+  /* Steel blue-grey — 3cHOA accent #B0BEC5 */
+  --primary: oklch(0.78 0.025 215);
+  --primary-foreground: oklch(0.18 0.005 280);
+  --primary-soft: oklch(0.95 0.01 215);
+
+  /* Dark charcoal-purple nav #4F474E */
+  --nav: oklch(0.32 0.02 325);
+  --nav-foreground: oklch(0.99 0 0);
+
+  /* Gold #b79227 */
+  --gold: oklch(0.65 0.12 88);
+
+  --secondary: oklch(0.94 0.005 220);
+  --secondary-foreground: oklch(0.22 0.01 220);
+
+  --muted: oklch(0.96 0.005 220);
+  --muted-foreground: oklch(0.52 0.015 220);
+
+  --accent: oklch(0.94 0.005 220);
+  --accent-foreground: oklch(0.28 0.02 220);
+
+  --success: oklch(0.62 0.14 165);
+  --success-foreground: oklch(0.99 0 0);
+
+  --border: oklch(0.91 0.008 220);
+  --input: oklch(0.91 0.008 220);
+  --ring: oklch(0.78 0.025 215);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    letter-spacing: -0.02em;
+  }
+}

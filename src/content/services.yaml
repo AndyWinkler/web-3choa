@@ -1,0 +1,33 @@
+heroHeadline: Our Services
+heroSubline: Comprehensive HOA management solutions tailored to your community's unique needs.
+pmHeadline: Property Management
+pmBody: We handle the full scope of community operations so your board can focus on big-picture goals.
+pmBullets:
+  - Board and homeowner meetings facilitation
+  - Vendor selection, contracting, and oversight
+  - Routine and preventative maintenance coordination
+  - Insurance and compliance oversight
+  - Homeowner communications and portal management
+acctHeadline: Accounting
+acctBody: Sound financial management is the backbone of a healthy HOA.
+acctBullets:
+  - Annual budget preparation and planning
+  - Accounts payable and receivable
+  - Assessment collection and delinquency management
+  - Bank reconciliation and financial reporting
+  - Document storage via Owner's Portal
+ownersRepHeadline: Owner's Representative
+ownersRepBody: When your community undertakes capital reserve projects, you need an experienced advocate in your corner.
+ownersRepBullets:
+  - Capital reserve project management
+  - Contractor bidding, scheduling, and oversight
+  - Budget and fund management
+  - Stakeholder coordination and progress reporting
+  - Reserve study support and planning
+insuranceHeadline: Insurance Claims Assistance
+insuranceBody: Navigating insurance claims is complex. We guide your community through every step.
+insuranceBullets:
+  - Claims filing guidance and documentation
+  - Insurance adjuster coordination
+  - Repair vendor selection and oversight
+  - Resolution tracking and communication

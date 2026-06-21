@@ -1,0 +1,91 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  canonicalURL?: string;
+  schema?: object | object[];
+}
+
+const siteUrl = 'https://3choa.com';
+const siteName = '3c HOA Management';
+const siteDescription = '3c HOA Management provides customized property management services — community association management, accounting, owner representation, and insurance claims assistance in Utah.';
+
+const {
+  title,
+  description = siteDescription,
+  ogImage = '/logos/3choa-og.jpg',
+  canonicalURL,
+  schema,
+} = Astro.props;
+
+const pageTitle = title.includes('3c HOA') ? title : `${title} — 3c HOA Management`;
+const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+const canonical = canonicalURL ?? Astro.url.href;
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': ['Organization', 'LocalBusiness'],
+  name: '3c HOA Management',
+  url: siteUrl,
+  logo: `${siteUrl}/logos/3choa-logo.png`,
+  telephone: '+14352504150',
+  openingHours: 'Mo-Fr 09:00-17:00',
+  address: {
+    '@type': 'PostalAddress',
+    addressRegion: 'UT',
+    addressCountry: 'US',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+14352504150',
+    contactType: 'customer service',
+    hoursAvailable: 'Mo-Fr 09:00-17:00',
+    url: `${siteUrl}/contact`,
+  },
+  description: siteDescription,
+};
+
+const allSchemas = [orgSchema, ...(schema ? (Array.isArray(schema) ? schema : [schema]) : [])];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="/logos/3choa-logo.png" />
+    <meta name="theme-color" content="#4F474E" />
+
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonical} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={fullOgImage} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullOgImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(allSchemas.length === 1 ? allSchemas[0] : allSchemas)} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" /></noscript>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

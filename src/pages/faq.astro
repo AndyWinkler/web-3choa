@@ -1,0 +1,84 @@
+---
+export const prerender = true;
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { createReader } from '@keystatic/core/reader';
+import keystaticConfig from '../../keystatic.config';
+
+const reader = createReader(process.cwd(), keystaticConfig);
+const faqPage = await reader.singletons.faqPage.read();
+
+const heroHeadline = faqPage?.heroHeadline ?? 'Frequently asked questions';
+const heroSubline = faqPage?.heroSubline ?? 'Common questions about HOA management, our services, and working with 3c HOA Management.';
+const stillQuestionsHeading = faqPage?.stillQuestionsHeading ?? 'Still have questions?';
+const stillQuestionsBody = faqPage?.stillQuestionsBody ?? "We're happy to talk through your specific situation.";
+
+const defaultFaqs = [
+  { question: 'What does an HOA management company do?', answer: 'An HOA management company handles the day-to-day operations of your community association — including board meetings, financial management, vendor coordination, compliance enforcement, and homeowner communications. We serve as the operational backbone so your board can focus on governance and community goals.' },
+  { question: 'How is 3c HOA Management different from other management companies?', answer: 'We emphasize transparency, personalized service, and genuine community investment. We don\'t take a one-size-fits-all approach — we build a management plan specific to your community\'s size, needs, and goals. Our team is accessible, responsive, and treats every community as if it were our own.' },
+  { question: 'What areas do you serve?', answer: 'We primarily serve communities in Utah, with a focus on the greater Salt Lake City and Park City areas. Contact us to confirm service availability for your community.' },
+  { question: 'How do homeowners access their portal?', answer: 'Homeowners can log in at app.buildinglink.com using the credentials provided by their HOA. The portal provides access to community documents, payment history, maintenance request submission, and community announcements.' },
+  { question: 'What is an Owner\'s Representative and do I need one?', answer: 'An Owner\'s Representative manages capital improvement projects on behalf of your HOA — coordinating contractors, overseeing budgets, and ensuring projects are completed on time and on budget. If your community is planning major repairs, renovations, or construction, an Owner\'s Rep protects your investment.' },
+  { question: 'How do I get started with 3c HOA Management?', answer: 'Simply reach out through our contact form or call us at (435) 250-4150. We\'ll schedule a consultation to understand your community\'s needs and put together a tailored proposal — with no commitment required for the initial conversation.' },
+];
+
+const faqs = faqPage?.questions?.length ? faqPage.questions : defaultFaqs;
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: { '@type': 'Answer', text: f.answer },
+  })),
+};
+---
+
+<Layout
+  schema={faqSchema}
+  title="FAQ — 3c HOA Management"
+  description="Frequently asked questions about 3c HOA Management — HOA services, homeowner portal access, owner representation, and getting started."
+>
+  <Header />
+
+  <section class="border-b border-border bg-secondary py-16 sm:py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <h1 class="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">{heroHeadline}</h1>
+        <p class="mt-6 text-lg text-muted-foreground">{heroSubline}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 sm:py-28">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group rounded-xl border border-border bg-card">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-sm font-semibold text-foreground hover:text-primary">
+              {faq.question}
+              <span class="ml-auto shrink-0 text-muted-foreground transition-transform group-open:rotate-180">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </span>
+            </summary>
+            <div class="border-t border-border px-6 py-5 text-sm text-muted-foreground">
+              {faq.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <div class="mt-16 rounded-2xl border border-border bg-nav p-8 text-center">
+        <p class="text-sm font-semibold text-white">{stillQuestionsHeading}</p>
+        <p class="mt-2 text-sm text-white/70">{stillQuestionsBody}</p>
+        <a href="/contact" class="mt-6 inline-flex rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90">
+          Contact us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

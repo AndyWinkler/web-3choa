@@ -1,0 +1,99 @@
+---
+export const prerender = true;
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { createReader } from '@keystatic/core/reader';
+import keystaticConfig from '../../keystatic.config';
+
+const reader = createReader(process.cwd(), keystaticConfig);
+const about = await reader.singletons.about.read();
+
+const heroHeadline = about?.heroHeadline ?? 'About 3c HOA Management';
+const heroSubline = about?.heroSubline ?? 'We believe every community deserves professional management built on integrity, care, and connection.';
+const missionHeadline = about?.missionHeadline ?? 'Our Mission';
+const missionBody = about?.missionBody ?? 'To provide transparent and effective management that puts our clients\' interests first — building communities where everyone feels at home.';
+const teamHeadline = about?.teamHeadline ?? 'Meet Our Team';
+const carissaTitle = about?.carissaTitle ?? 'Co-Founder & CEO';
+const carissaBio = about?.carissaBio ?? 'With over 20 years in real estate and 10+ years in community association management and owner representation, Carissa brings deep expertise and genuine care to every community she serves. Her leadership is grounded in transparency, proactive communication, and a commitment to results.';
+const valuesHeadline = about?.valuesHeadline ?? 'Our Values';
+---
+
+<Layout
+  title="About Us — 3c HOA Management"
+  description="Learn about 3c HOA Management — our mission, team, and commitment to transparent, community-focused HOA management in Utah."
+>
+  <Header />
+
+  {/* Hero */}
+  <section class="border-b border-border bg-secondary py-16 sm:py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <h1 class="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">{heroHeadline}</h1>
+        <p class="mt-6 text-lg text-muted-foreground">{heroSubline}</p>
+      </div>
+    </div>
+  </section>
+
+  {/* Values */}
+  <section class="py-20 sm:py-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{valuesHeadline}</h2>
+      </div>
+      <div class="mt-12 grid gap-8 sm:grid-cols-3">
+        {[
+          { word: 'Community', icon: '🏘️', desc: 'We serve the communities we manage as if they were our own — with pride, attention, and genuine investment in every resident\'s wellbeing.' },
+          { word: 'Care', icon: '💛', desc: 'Every decision we make is guided by what\'s best for our clients. We listen, respond promptly, and follow through on every commitment.' },
+          { word: 'Connect', icon: '🤝', desc: 'We bridge the gap between boards, homeowners, and vendors — creating clear channels of communication that keep communities running smoothly.' },
+        ].map((v) => (
+          <div class="rounded-2xl border border-border bg-card p-8 text-center shadow-[var(--shadow-soft)]">
+            <div class="mb-4 text-4xl">{v.icon}</div>
+            <h3 class="text-xl font-bold text-foreground">{v.word}</h3>
+            <p class="mt-3 text-sm text-muted-foreground">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Mission */}
+  <section class="bg-secondary py-20 sm:py-28">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{missionHeadline}</h2>
+      <p class="mt-6 text-lg text-muted-foreground">{missionBody}</p>
+    </div>
+  </section>
+
+  {/* Team */}
+  <section class="py-20 sm:py-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="mb-12 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{teamHeadline}</h2>
+      <div class="max-w-2xl rounded-2xl border border-border bg-card p-8 shadow-[var(--shadow-soft)]">
+        <div class="flex items-start gap-6">
+          <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-primary/20 text-2xl font-bold text-nav">
+            CC
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold text-foreground">Carissa Cutler</h3>
+            <p class="text-sm font-medium text-primary">{carissaTitle}</p>
+            <p class="mt-4 text-sm text-muted-foreground">{carissaBio}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* CTA */}
+  <section class="bg-nav py-16">
+    <div class="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-white sm:text-3xl">Let's work together</h2>
+      <p class="mx-auto mt-4 max-w-xl text-base text-white/70">Ready to experience management built on community, care, and connection?</p>
+      <a href="/contact" class="mt-8 inline-flex rounded-lg bg-primary px-8 py-3.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90">
+        Get in touch
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

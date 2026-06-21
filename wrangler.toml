@@ -1,0 +1,13 @@
+name = "web-3choa"
+pages_build_output_dir = "dist"
+compatibility_date = "2025-04-02"
+compatibility_flags = ["nodejs_compat_v2"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "3choa-submissions"
+database_id = "PLACEHOLDER"
+
+[vars]
+KEYSTATIC_GITHUB_CLIENT_ID = "PLACEHOLDER"
+PUBLIC_KEYSTATIC_GITHUB_APP_SLUG = "3choa-cms"
