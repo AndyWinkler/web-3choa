@@ -13,9 +13,16 @@ const heroHeadline = about?.heroHeadline ?? 'About 3c HOA Management';
 const heroSubline = about?.heroSubline ?? 'We believe every community deserves professional management built on integrity, care, and connection.';
 const missionHeadline = about?.missionHeadline ?? 'Our Mission';
 const missionBody = about?.missionBody ?? 'To provide transparent and effective management that puts our clients\' interests first — building communities where everyone feels at home.';
-const teamHeadline = about?.teamHeadline ?? 'Meet Our Team';
 const carissaTitle = about?.carissaTitle ?? 'Co-Founder & CEO';
-const carissaBio = about?.carissaBio ?? 'With over 20 years in real estate and 10+ years in community association management and owner representation, Carissa brings deep expertise and genuine care to every community she serves. Her leadership is grounded in transparency, proactive communication, and a commitment to results.';
+const carissaBio = about?.carissaBio ?? `Welcome to 3c HOA, where integrity, community, and care are at the heart of everything we do. I'm Carissa Cutler, Co-Founder and CEO, and I bring over 20 years of experience in real estate and a decade of expertise in community association management and owner representation to our company.
+
+At 3c HOA, we believe in building strong, connected communities through transparent and effective management. Our commitment ensures that we always act in the best interests of our clients, establishing trust and long-lasting relationships.
+
+Leveraging our connections with industry experts, we utilize the latest technology and best practices to enhance the homeowner experience. We understand the importance of clear communication and transparency, and we strive to keep our clients informed and engaged every step of the way.
+
+We are dedicated to providing exceptional service and personalized solutions that meet the unique needs of each community we serve. Whether it's through proactive maintenance, efficient financial management, or furthering a sense of connection, our goal is to create communities where everyone feels at home.
+
+Thank you for considering 3c HOA as your trusted partner in HOA management. We look forward to working with you.`;
 const valuesHeadline = about?.valuesHeadline ?? 'Our Values';
 ---
 
@@ -65,19 +72,31 @@ const valuesHeadline = about?.valuesHeadline ?? 'Our Values';
     </div>
   </section>
 
-  {/* Team */}
+  {/* Letter from Carissa */}
   <section class="py-20 sm:py-28">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <h2 class="mb-12 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{teamHeadline}</h2>
-      <div class="max-w-2xl rounded-2xl border border-border bg-card p-8 shadow-[var(--shadow-soft)]">
-        <div class="flex items-start gap-6">
-          <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-primary/20 text-2xl font-bold text-nav">
-            CC
-          </div>
-          <div>
-            <h3 class="text-lg font-semibold text-foreground">Carissa Cutler</h3>
-            <p class="text-sm font-medium text-primary">{carissaTitle}</p>
-            <p class="mt-4 text-sm text-muted-foreground">{carissaBio}</p>
+      <div class="grid items-start gap-12 lg:grid-cols-[320px_1fr]">
+        <div class="flex flex-col items-center text-center lg:items-start lg:text-left">
+          <img
+            src="/images/carissa-cutler.jpg"
+            alt="Carissa Cutler"
+            class="w-72 rounded-2xl object-cover shadow-lg sm:w-80 aspect-[2/3]"
+          />
+          <h3 class="mt-5 text-xl font-semibold text-foreground">Carissa Cutler</h3>
+          <p class="text-sm font-medium text-primary">{carissaTitle}</p>
+        </div>
+        <div>
+          <h2 class="mb-8 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">A Letter from Our CEO</h2>
+          <div class="prose prose-neutral max-w-none">
+            {carissaBio.split('\n\n').map((p) => (
+              <p class="mb-4 text-base leading-relaxed text-muted-foreground">{p}</p>
+            ))}
+            <div class="mt-10 space-y-1">
+              <p class="text-base font-semibold text-foreground">Warm regards,</p>
+              <p class="text-base font-semibold text-foreground">Carissa Cutler</p>
+              <p class="text-sm text-muted-foreground">Co-Founder & CEO</p>
+              <p class="text-sm text-muted-foreground">3c HOA Management Co</p>
+            </div>
           </div>
         </div>
       </div>

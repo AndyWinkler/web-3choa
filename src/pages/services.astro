@@ -50,6 +50,43 @@ const insuranceBullets = services?.insuranceBullets?.length ? services.insurance
   'Repair vendor selection and oversight',
   'Follow-up and resolution tracking',
 ];
+
+const saHeadline = services?.saHeadline ?? 'Special Assessment & Loan Management';
+const saBody = services?.saBody ?? 'We help boards navigate major capital funding hurdles smoothly and transparently.';
+const saBullets = services?.saBullets?.length ? services.saBullets : [
+  'HOA-specific commercial lender sourcing and underwriting facilitation',
+  'Specialized assessment structuring, billing, and clear tracking',
+  'Dedicated capital improvement fund separation and accounting',
+  'Clear homeowner disclosure communications regarding loan terms',
+  'Multi-year amortization tracking',
+];
+
+const forensicHeadline = services?.forensicHeadline ?? 'HOA Financial Rescue & Forensic Accounting';
+const forensicBody = services?.forensicBody ?? 'We untangle chaotic, delayed, or neglected books to restore complete fiscal health.';
+const forensicBullets = services?.forensicBullets?.length ? services.forensicBullets : [
+  'Historical auditing and reconstruction of neglected financial ledgers',
+  'Comprehensive bank reconciliation backlog catch-up',
+  'Delinquency tracking and compliant collections recovery plans',
+  'Clean baseline balancing for smooth ongoing operations',
+];
+
+const devTransitionHeadline = services?.devTransitionHeadline ?? 'Developer Transition & Handover Services';
+const devTransitionBody = services?.devTransitionBody ?? "We protect the community's long-term interests during the critical handover from builder to board.";
+const devTransitionBullets = services?.devTransitionBullets?.length ? services.devTransitionBullets : [
+  'Independent audit of developer financial records and initial reserves',
+  'Complete operational framework and accounting infrastructure setup',
+  'Vendor contract review and transitional continuity planning',
+  'Post-handover board training and governance onboarding',
+];
+
+const saSidebarTitle = services?.saSidebarTitle ?? 'Common scenarios';
+const saSidebarItems = services?.saSidebarItems?.length ? services.saSidebarItems : ['Emergency structural repairs', 'Underfunded reserve shortfalls', 'Large-scale community renovations', 'Multi-year amortization tracking'];
+
+const forensicSidebarTitle = services?.forensicSidebarTitle ?? 'What you get';
+const forensicSidebarItems = services?.forensicSidebarItems?.length ? services.forensicSidebarItems : ['Forensic accounting audit report', 'Restructured balance sheets', 'Formal collection roadmaps', 'Realigned reserve fund strategy'];
+
+const devTransitionSidebarTitle = services?.devTransitionSidebarTitle ?? "Who it's for";
+const devTransitionSidebarItems = services?.devTransitionSidebarItems?.length ? services.devTransitionSidebarItems : ['Newly constructed communities', 'Master-planned developments', 'Transitions from developer control', 'Newly formed homeowner boards'];
 ---
 
 <Layout
@@ -182,6 +219,99 @@ const insuranceBullets = services?.insuranceBullets?.length ? services.insurance
           <p class="text-sm font-semibold text-foreground">Claim types we assist with</p>
           <div class="mt-4 space-y-3">
             {['Storm & weather damage', 'Fire & water damage', 'Liability claims', 'Property damage'].map((a) => (
+              <div class="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">{a}</div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="border-t border-border" />
+
+  {/* Special Assessment & Loan Management */}
+  <section id="special-assessment" class="py-20 sm:py-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-12 lg:grid-cols-2 lg:items-start">
+        <div class="lg:order-2">
+          <div class="mb-4 text-4xl">🏛️</div>
+          <h2 class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{saHeadline}</h2>
+          <p class="mt-4 text-lg text-muted-foreground">{saBody}</p>
+          <ul class="mt-8 space-y-3">
+            {saBullets.map((point) => (
+              <li class="flex items-start gap-3">
+                <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-nav">✓</span>
+                <span class="text-sm text-muted-foreground">{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-border bg-secondary p-8 lg:order-1 lg:p-12">
+          <p class="text-sm font-semibold text-foreground">{saSidebarTitle}</p>
+          <div class="mt-4 space-y-3">
+            {saSidebarItems.map((a) => (
+              <div class="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">{a}</div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="border-t border-border" />
+
+  {/* HOA Financial Rescue & Forensic Accounting */}
+  <section id="forensic-accounting" class="py-20 sm:py-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-12 lg:grid-cols-2 lg:items-start">
+        <div>
+          <div class="mb-4 text-4xl">🔍</div>
+          <h2 class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{forensicHeadline}</h2>
+          <p class="mt-4 text-lg text-muted-foreground">{forensicBody}</p>
+          <ul class="mt-8 space-y-3">
+            {forensicBullets.map((point) => (
+              <li class="flex items-start gap-3">
+                <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-nav">✓</span>
+                <span class="text-sm text-muted-foreground">{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-border bg-secondary p-8 lg:p-12">
+          <p class="text-sm font-semibold text-foreground">What you get</p>
+          <div class="mt-4 space-y-3">
+            {['Forensic accounting audit report', 'Restructured balance sheets', 'Formal collection roadmaps', 'Realigned reserve fund strategy'].map((a) => (
+              <div class="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">{a}</div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="border-t border-border" />
+
+  {/* Developer Transition & Handover */}
+  <section id="developer-transition" class="py-20 sm:py-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-12 lg:grid-cols-2 lg:items-start">
+        <div class="lg:order-2">
+          <div class="mb-4 text-4xl">🤝</div>
+          <h2 class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{devTransitionHeadline}</h2>
+          <p class="mt-4 text-lg text-muted-foreground">{devTransitionBody}</p>
+          <ul class="mt-8 space-y-3">
+            {devTransitionBullets.map((point) => (
+              <li class="flex items-start gap-3">
+                <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-nav">✓</span>
+                <span class="text-sm text-muted-foreground">{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-border bg-secondary p-8 lg:order-1 lg:p-12">
+          <p class="text-sm font-semibold text-foreground">{devTransitionSidebarTitle}</p>
+          <div class="mt-4 space-y-3">
+            {devTransitionSidebarItems.map((a) => (
               <div class="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">{a}</div>
             ))}
           </div>

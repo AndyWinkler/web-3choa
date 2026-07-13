@@ -31,3 +31,37 @@ insuranceBullets:
   - Insurance adjuster coordination
   - Repair vendor selection and oversight
   - Resolution tracking and communication
+saHeadline: Special Assessment & Loan Management
+saBody: We help boards navigate major capital funding hurdles smoothly and transparently.
+saBullets:
+  - HOA-specific commercial lender sourcing and underwriting facilitation
+  - Specialized assessment structuring, billing, and clear tracking
+  - Dedicated capital improvement fund separation and accounting
+  - Clear homeowner disclosure communications regarding loan terms
+  - Multi-year amortization tracking
+saSidebarTitle: Common scenarios
+saSidebarItems:
+  - Emergency structural repairs
+  - Underfunded reserve shortfalls
+  - Large-scale community renovations
+  - Multi-year amortization tracking
+forensicHeadline: HOA Financial Rescue & Forensic Accounting
+forensicBody: We untangle chaotic, delayed, or neglected books to restore complete fiscal health.
+forensicBullets:
+  - Historical auditing and reconstruction of neglected financial ledgers
+  - Comprehensive bank reconciliation backlog catch-up
+  - Delinquency tracking and compliant collections recovery plans
+  - Clean baseline balancing for smooth ongoing operations
+forensicSidebarTitle: What you get
+forensicSidebarItems:
+  - Forensic accounting audit report
+  - Restructured balance sheets
+  - Formal collection roadmaps
+  - Realigned reserve fund strategy
+devTransitionHeadline: Developer Transition & Handover Services
+devTransitionBody: We protect the community's long-term interests during the critical handover from builder to board.
+devTransitionBullets:
+  - Independent audit of developer financial records and initial reserves
+  - Complete operational framework and accounting infrastructure setup
+  - Vendor contract review and transitional continuity planning
+  - Post-handover board training and governance onboarding
