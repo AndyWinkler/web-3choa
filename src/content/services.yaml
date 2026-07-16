@@ -1,23 +1,48 @@
-heroHeadline: Our Services
-heroSubline: Comprehensive HOA management solutions tailored to your community's unique needs.
+heroHeadline: Stop Managing Your Management Company.
+heroSubline: >-
+  Proactive, transparent HOA management designed to eliminate board burnout,
+  resolve historical messes, and protect your community's most valuable assets.
 pmHeadline: Property Management
-pmBody: We handle the full scope of community operations so your board can focus on big-picture goals.
+pmBody: >-
+  Reclaim your volunteer time. We handle the 3 AM emergencies, the vendor
+  chasing, and the daily compliance so your board can get back to simply
+  governing. We don't just react to broken pipes and complaints; we proactively
+  manage your community to prevent them.
+
+
+  💡 Board Insight: Is your current management company proactive or reactive? If
+  you only hear from your manager when something is already broken or a
+  homeowner is angry, you are paying for reactive management.
 pmBullets:
   - Board and homeowner meetings facilitation
   - Vendor selection, contracting, and oversight
   - Routine and preventative maintenance coordination
   - Insurance and compliance oversight
   - Homeowner communications and portal management
-acctHeadline: Accounting
-acctBody: Sound financial management is the backbone of a healthy HOA.
+acctHeadline: Accounting & Financials
+acctBody: >-
+  Trust is built on transparency. Whether you need reliable daily bookkeeping or
+  a complete rescue of neglected, messy financials left behind by a previous
+  provider, we restore complete fiscal health and give your board 24/7
+  visibility into every dollar. 
+
+
+  💡 Board Insight: Do you know exactly where your reserve funds stand right
+  now? Without clear, monthly bank reconciliations, your board could be flying
+  blind toward a massive special assessment.
 acctBullets:
   - Annual budget preparation and planning
   - Accounts payable and receivable
   - Assessment collection and delinquency management
   - Bank reconciliation and financial reporting
   - Document storage via Owner's Portal
-ownersRepHeadline: Owner's Representative
-ownersRepBody: When your community undertakes capital reserve projects, you need an experienced advocate in your corner.
+ownersRepHeadline: Owner's Representative (Capital Projects)
+ownersRepBody: >-
+  Don't navigate multi-million dollar roofing, paving, or deferred maintenance
+  projects alone. We sit on your side of the table. As your dedicated Owner's
+  Rep, we act exclusively in your best interest—auditing contractor bids,
+  aggressively managing budgets, and ensuring high-quality completion without
+  the typical cost overruns.
 ownersRepBullets:
   - Capital reserve project management
   - Contractor bidding, scheduling, and oversight
@@ -25,14 +50,29 @@ ownersRepBullets:
   - Stakeholder coordination and progress reporting
   - Reserve study support and planning
 insuranceHeadline: Insurance Claims Assistance
-insuranceBody: Navigating insurance claims is complex. We guide your community through every step.
+insuranceBody: >-
+  A major property damage claim shouldn't become a full-time job for your
+  volunteer board. We step in as your dedicated advocate, handling the endless
+  adjuster calls, navigating the complex claims paperwork, and coordinating the
+  repair vendors. We fight to ensure your community gets every dollar it's
+  entitled to, allowing you to rebuild with confidence instead of stress.
+
+
+  💡 Board Insight: Is your community insured for today's reality? Construction
+  costs have skyrocketed in recent years. If your master policy hasn't been
+  updated to reflect current replacement costs, a catastrophic claim could leave
+  your board scrambling to cover a shortfall.
 insuranceBullets:
   - Claims filing guidance and documentation
   - Insurance adjuster coordination
   - Repair vendor selection and oversight
   - Resolution tracking and communication
 saHeadline: Special Assessment & Loan Management
-saBody: We help boards navigate major capital funding hurdles smoothly and transparently.
+saBody: >-
+  Funding major repairs shouldn't tear a community apart. We guide boards
+  through the delicate process of special assessments and HOA loans, providing
+  crystal-clear homeowner communications, specialized ledger tracking, and
+  expert commercial lender sourcing to ease the financial friction.
 saBullets:
   - HOA-specific commercial lender sourcing and underwriting facilitation
   - Specialized assessment structuring, billing, and clear tracking
@@ -46,7 +86,11 @@ saSidebarItems:
   - Large-scale community renovations
   - Multi-year amortization tracking
 forensicHeadline: HOA Financial Rescue & Forensic Accounting
-forensicBody: We untangle chaotic, delayed, or neglected books to restore complete fiscal health.
+forensicBody: >-
+  When things have gone wrong for years, you need more than a standard
+  bookkeeper. We specialize in forensic reconstruction—untangling chaotic,
+  delayed, or missing financial ledgers to rebuild your balance sheets from the
+  ground up and give your board a clean, legally compliant baseline.
 forensicBullets:
   - Historical auditing and reconstruction of neglected financial ledgers
   - Comprehensive bank reconciliation backlog catch-up
@@ -59,9 +103,20 @@ forensicSidebarItems:
   - Formal collection roadmaps
   - Realigned reserve fund strategy
 devTransitionHeadline: Developer Transition & Handover Services
-devTransitionBody: We protect the community's long-term interests during the critical handover from builder to board.
+devTransitionBody: >-
+  The handover phase dictates the financial future of your community. We act as
+  your independent auditor to protect the homeowners' long-term interests,
+  ensuring the developer leaves you with a complete operational framework, fully
+  funded initial reserves, and no hidden liabilities.
+
+
+  💡 Board Insight (The Handover Trap): Did you know developers sometimes
+  underfund initial reserves to keep HOA dues artificially low and sell homes
+  faster? An independent audit during transition ensures the developer fulfills
+  their financial obligations before it becomes the homeowners' burden.
 devTransitionBullets:
   - Independent audit of developer financial records and initial reserves
   - Complete operational framework and accounting infrastructure setup
   - Vendor contract review and transitional continuity planning
   - Post-handover board training and governance onboarding
+devTransitionSidebarItems: []
