@@ -42,6 +42,13 @@ export default config({
         carissaTitle: fields.text({ label: 'Carissa — title', defaultValue: 'Co-Founder & CEO' }),
         carissaBio: fields.text({ label: 'Carissa — letter', multiline: true, defaultValue: "Welcome to 3c HOA, where integrity, community, and care are at the heart of everything we do. I'm Carissa Cutler, Co-Founder and CEO, and I bring over 20 years of experience in real estate and a decade of expertise in community association management and owner representation to our company.\n\nAt 3c HOA, we believe in building strong, connected communities through transparent and effective management. Our commitment ensures that we always act in the best interests of our clients, establishing trust and long-lasting relationships.\n\nLeveraging our connections with industry experts, we utilize the latest technology and best practices to enhance the homeowner experience. We understand the importance of clear communication and transparency, and we strive to keep our clients informed and engaged every step of the way.\n\nWe are dedicated to providing exceptional service and personalized solutions that meet the unique needs of each community we serve. Whether it's through proactive maintenance, efficient financial management, or furthering a sense of connection, our goal is to create communities where everyone feels at home.\n\nThank you for considering 3c HOA as your trusted partner in HOA management. We look forward to working with you." }),
         valuesHeadline: fields.text({ label: 'Values headline', defaultValue: 'Our Values' }),
+        values: fields.array(
+          fields.object({
+            title: fields.text({ label: 'Value title' }),
+            desc: fields.text({ label: 'Value description', multiline: true }),
+          }),
+          { label: 'Values tiles', itemLabel: (p) => p.fields.title.value || 'Value' }
+        ),
       },
     }),
 

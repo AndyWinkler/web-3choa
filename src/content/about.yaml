@@ -48,3 +48,16 @@ carissaBio: >
   restoring your peace of mind and protecting your community's most valuable
   assets.
 valuesHeadline: Our Values
+values:
+  - title: Community
+    desc: >-
+      We serve the communities we manage as if they were our own — with pride,
+      attention, and genuine investment in every resident's wellbeing.
+  - title: Care
+    desc: >-
+      Every decision we make is guided by what's best for our clients. We
+      listen, respond promptly, and follow through on every commitment.
+  - title: Connect
+    desc: >-
+      We bridge the gap between boards, homeowners, and vendors — creating
+      clear channels of communication that keep communities running smoothly.
