@@ -52,8 +52,8 @@
   --nav: oklch(0.32 0.02 325);
   --nav-foreground: oklch(0.99 0 0);
 
-  /* Gold #b79227 */
-  --gold: oklch(0.65 0.12 88);
+  /* Classic Metallic Gold — alternatives: #C5A059 (deep corporate), #CFB53B (warm trust) */
+  --gold: #D4AF37;
 
   --secondary: oklch(0.94 0.005 220);
   --secondary-foreground: oklch(0.22 0.01 220);
