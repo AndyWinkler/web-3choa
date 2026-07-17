@@ -50,12 +50,6 @@ questions:
       operational framework, fully funded initial reserves, and no hidden
       liabilities. Waiting until after the developer leaves often results in the
       homeowners footing the bill for unfinished infrastructure.
-  - question: How do homeowners access their portal?
-    answer: >-
-      Homeowners can log in at https://www.app.allhoa.com/3choa using the
-      credentials provided by their HOA. The portal provides access to community
-      documents, payment history, maintenance request submission, and community
-      announcements.
   - question: How do I get started with 3c HOA Management?
     answer: >-
       Reach out to us through our contact form or give us a call at (435)
@@ -63,6 +57,12 @@ questions:
       schedule a brief, no-commitment chat to understand your community’s unique
       needs, provide a custom management proposal, and take all the heavy
       lifting off your shoulders from day one.
+  - question: How do homeowners access their portal?
+    answer: >-
+      Homeowners can log in at https://www.app.allhoa.com/3choa using the
+      credentials provided by their HOA. The portal provides access to community
+      documents, payment history, maintenance request submission, and community
+      announcements.
   - question: '💡 Board Insight: The "Value" Question'
     answer: >
       Are you paying a management fee just for someone to pay the bills, or are
