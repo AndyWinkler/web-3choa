@@ -10,6 +10,14 @@ export async function pushToGcp(
   rowId: number,
   payload: Record<string, unknown>,
 ): Promise<void> {
+  if (!env.GCP_INGEST_URL || !env.GCP_INGEST_SECRET) {
+    console.error(
+      `[gcp] missing GCP_INGEST_URL or GCP_INGEST_SECRET — skipping ${table} id=${rowId}. ` +
+        `Pages secrets only apply to deployments created after they are set; redeploy to pick them up.`,
+    );
+    return;
+  }
+
   try {
     const res = await fetch(env.GCP_INGEST_URL, {
       method: 'POST',
@@ -21,7 +29,8 @@ export async function pushToGcp(
     });
 
     if (!res.ok) {
-      console.error(`[gcp] HTTP ${res.status} for ${table} id=${rowId}`);
+      const detail = await res.text().catch(() => '<body unreadable>');
+      console.error(`[gcp] HTTP ${res.status} for ${table} id=${rowId}: ${detail.slice(0, 500)}`);
       return;
     }
 
