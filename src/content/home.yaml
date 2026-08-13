@@ -23,8 +23,23 @@ whyBullets:
   - >-
     Preventative Maintenance: We fix small issues before they become expensive
     emergency special assessments.
-testimonialsHeadline: What our communities say
-testimonialsSubline: Boards and homeowners on what it’s like to work with 3c.
-testimonials: []
+testimonialsHeadline: Testimonials
+testimonialsSubline: 'Board Memebers, Owners and Vendors about working with 3c HOA:'
+testimonials:
+  - quote: >-
+      "As an HOA board member navigating the transition away from our previous
+      property management company, I couldn't have asked for a better partner
+      than 3c HOA Management. If you're thinking about making a change, trust
+      your gut and make the move! Cari Cutler and her team has made the entire
+      transition seamless, providing clear communication, thorough guidance, and
+      confidence every step of the way. Cari has already proven to be a strong
+      advocate, and I'm excited to see how her leadership and expertise will
+      help our community thrive for years to come.” 
+    name: A.Keller
+  - quote: >-
+      Working with them as a vendor is great. They are easy to talk to and their
+      process is simple. Plus, they pay their invoices quickly via direct
+      deposit, which makes my job a lot easier.
+    name: Janitorial Services
 ctaHeadline: Ready to elevate your community?
 ctaSubline: Let's talk about your community's unique needs.
