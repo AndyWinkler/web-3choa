@@ -19,6 +19,16 @@ const whyBody = home?.whyBody ?? 'With over 10 years of community association ma
 
 const ctaHeadline = home?.ctaHeadline ?? 'Ready to elevate your community?';
 const ctaSubline = home?.ctaSubline ?? "Let's talk about your community's unique needs.";
+
+const testimonialsHeadline = home?.testimonialsHeadline ?? 'What our communities say';
+const testimonialsSubline = home?.testimonialsSubline ?? 'Boards and homeowners on what it’s like to work with 3c.';
+const testimonials = (home?.testimonials ?? []).filter((t) => t?.quote?.trim());
+
+// The track holds two identical groups and slides exactly one group width, so the
+// loop is seamless. Repeat short lists first so the strip is always wider than the screen.
+const repeats = testimonials.length ? Math.max(1, Math.ceil(4 / testimonials.length)) : 0;
+const marqueeGroup = Array.from({ length: repeats }, () => testimonials).flat();
+const marqueeSeconds = marqueeGroup.length * 12;
 ---
 
 <Layout
@@ -139,6 +149,53 @@ const ctaSubline = home?.ctaSubline ?? "Let's talk about your community's unique
     </div>
   </section>
 
+  {/* Testimonials */}
+  {testimonials.length > 0 && (
+    <section class="py-20 sm:py-28" aria-labelledby="testimonials-heading">
+      <div class="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
+        <h2 id="testimonials-heading" class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{testimonialsHeadline}</h2>
+        <p class="mt-4 text-lg text-muted-foreground">{testimonialsSubline}</p>
+      </div>
+
+      <div class="mt-14" data-marquee>
+        <div class="marquee">
+          <div class="marquee-track" style={`--marquee-duration: ${marqueeSeconds}s`}>
+            {[0, 1].map((copy) => (
+              <div class="marquee-group" aria-hidden={copy === 1 ? 'true' : undefined}>
+                {marqueeGroup.map((t) => (
+                  <figure class="marquee-card flex flex-col rounded-2xl border border-border bg-card p-8 shadow-[var(--shadow-soft)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-8 w-8 text-gold" aria-hidden="true">
+                      <path d="M9.5 5C6.46 5 4 7.46 4 10.5S6.46 16 9.5 16h.3c-.6 1.6-1.9 2.7-3.6 3.2l.6 1.8c3.6-1.1 6-4.3 6-8.5V10.5C12.8 7.46 10.9 5 9.5 5Zm9 0C15.46 5 13 7.46 13 10.5S15.46 16 18.5 16h.3c-.6 1.6-1.9 2.7-3.6 3.2l.6 1.8c3.6-1.1 6-4.3 6-8.5V10.5C21.8 7.46 19.9 5 18.5 5Z"/>
+                    </svg>
+                    <blockquote class="mt-5 flex-1 text-base leading-relaxed text-muted-foreground">{t.quote}</blockquote>
+                    <figcaption class="mt-6 text-sm font-semibold text-foreground">— {t.name}</figcaption>
+                  </figure>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="mt-10 flex justify-center">
+          <button
+            type="button"
+            data-marquee-toggle
+            class="inline-flex items-center gap-2 rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="marquee-icon-pause h-4 w-4" aria-hidden="true">
+              <rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="marquee-icon-play h-4 w-4" aria-hidden="true">
+              <path d="M8 5.5a1 1 0 0 1 1.5-.87l9 6.5a1 1 0 0 1 0 1.74l-9 6.5A1 1 0 0 1 8 18.5Z" />
+            </svg>
+            <span class="marquee-label-pause">Pause testimonials</span>
+            <span class="marquee-label-play">Play testimonials</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  )}
+
   {/* CTA */}
   <section class="bg-nav py-16">
     <div class="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
@@ -151,4 +208,18 @@ const ctaSubline = home?.ctaSubline ?? "Let's talk about your community's unique
   </section>
 
   <Footer />
+
+  <script is:inline>
+    document.querySelectorAll('[data-marquee]').forEach((marquee) => {
+      const toggle = marquee.querySelector('[data-marquee-toggle]');
+      if (!toggle) return;
+      const setPaused = (paused) => {
+        if (paused) marquee.setAttribute('data-paused', '');
+        else marquee.removeAttribute('data-paused');
+      };
+      // Honour a reduced-motion preference by starting still; the button still works.
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) setPaused(true);
+      toggle.addEventListener('click', () => setPaused(!marquee.hasAttribute('data-paused')));
+    });
+  </script>
 </Layout>

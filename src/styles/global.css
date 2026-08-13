@@ -95,3 +95,50 @@
 @media (prefers-reduced-motion: reduce) {
   .hero-rise { animation: none; }
 }
+
+/* Testimonial marquee: the track holds two identical groups, so sliding it exactly
+   one group width (-50%) lands back where it started and the loop is invisible. */
+.marquee {
+  --marquee-fade: 2rem;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--marquee-fade), #000 calc(100% - var(--marquee-fade)), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 var(--marquee-fade), #000 calc(100% - var(--marquee-fade)), transparent);
+}
+@media (min-width: 640px) {
+  .marquee { --marquee-fade: 5rem; }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  padding-block: 0.5rem;
+  animation: marquee-scroll var(--marquee-duration, 60s) linear infinite;
+}
+.marquee-group { display: flex; }
+.marquee-card {
+  width: 20rem;
+  margin-right: 1.5rem;
+  white-space: pre-line;
+}
+@media (min-width: 640px) {
+  .marquee-card { width: 24rem; margin-right: 2rem; }
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+[data-marquee][data-paused] .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+@media (hover: hover) {
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+}
+
+.marquee-icon-play,
+.marquee-label-play { display: none; }
+[data-marquee][data-paused] .marquee-icon-pause,
+[data-marquee][data-paused] .marquee-label-pause { display: none; }
+[data-marquee][data-paused] .marquee-icon-play { display: block; }
+[data-marquee][data-paused] .marquee-label-play { display: inline; }

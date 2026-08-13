@@ -25,6 +25,19 @@ export default config({
           fields.text({ label: 'Bullet point' }),
           { label: 'Why 3c — bullet points', itemLabel: (props) => props.value || 'Bullet' }
         ),
+        testimonialsHeadline: fields.text({ label: 'Testimonials — headline', defaultValue: 'What our communities say' }),
+        testimonialsSubline: fields.text({ label: 'Testimonials — subline', multiline: true, defaultValue: 'Boards and homeowners on what it’s like to work with 3c.' }),
+        testimonials: fields.array(
+          fields.object({
+            quote: fields.text({ label: 'Quote', multiline: true }),
+            name: fields.text({ label: 'Name' }),
+          }),
+          {
+            label: 'Testimonials',
+            itemLabel: (p) => p.fields.name.value || 'Testimonial',
+            description: 'Cards scroll across the homepage. Leave empty to hide the section.',
+          }
+        ),
         ctaHeadline: fields.text({ label: 'CTA headline', defaultValue: 'Ready to elevate your community?' }),
         ctaSubline: fields.text({ label: 'CTA subline', multiline: true, defaultValue: "Let's talk about your community's unique needs." }),
       },
