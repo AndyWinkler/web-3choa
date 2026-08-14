@@ -14,6 +14,24 @@ const contactHeadline = site?.contactHeroHeadline ?? "Let's talk.";
 const contactSubline = site?.contactHeroSubline ?? "Questions about your community, our services, or getting started? Send us a note and we'll respond within one business day.";
 const successHeading = site?.contactSuccessHeading ?? 'Message received';
 const successBody = site?.contactSuccessBody ?? "We'll be in touch within one business day. Thank you!";
+
+// `||` rather than `??`: the Keystatic reader hands back '' for a key that is absent from
+// the YAML or cleared in the CMS, and these cards should never render blank.
+const phoneCardTitle = site?.contactPhoneCardTitle || 'Phone';
+const phoneNumber = site?.contactPhoneNumber || '(435) 250-4150';
+const phoneDigits = phoneNumber.replace(/\D/g, '');
+const phoneHref = `tel:${phoneDigits.length === 10 ? `+1${phoneDigits}` : `+${phoneDigits}`}`;
+
+const hoursCardTitle = site?.contactHoursCardTitle || 'Office Hours';
+const hoursBody = site?.contactHoursBody || 'Monday – Friday\n9:00 AM – 5:00 PM';
+
+const portalCardTitle = site?.contactPortalCardTitle || 'Homeowner Portal';
+const portalBody = site?.contactPortalBody || 'For maintenance requests, documents, and payments.';
+const portalLinkLabel = site?.contactPortalLinkLabel || 'Login to portal →';
+
+const inputClass =
+  'w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring';
+const labelClass = 'mb-1.5 block text-sm font-medium text-foreground';
 ---
 
 <Layout
@@ -31,19 +49,18 @@ const successBody = site?.contactSuccessBody ?? "We'll be in touch within one bu
         {/* Contact info */}
         <div class="space-y-6">
           <div class="rounded-2xl border border-border bg-card p-6">
-            <p class="text-sm font-semibold text-foreground">Phone</p>
-            <a href="tel:+14352504150" class="mt-1 block text-lg font-medium text-primary hover:underline">(435) 250-4150</a>
+            <p class="text-sm font-semibold text-foreground">{phoneCardTitle}</p>
+            <a href={phoneHref} class="mt-1 block text-lg font-medium text-primary hover:underline">{phoneNumber}</a>
           </div>
           <div class="rounded-2xl border border-border bg-card p-6">
-            <p class="text-sm font-semibold text-foreground">Office Hours</p>
-            <p class="mt-1 text-sm text-muted-foreground">Monday – Friday</p>
-            <p class="text-sm text-muted-foreground">9:00 AM – 5:00 PM</p>
+            <p class="text-sm font-semibold text-foreground">{hoursCardTitle}</p>
+            <p class="mt-1 whitespace-pre-line text-sm text-muted-foreground">{hoursBody}</p>
           </div>
           <div class="rounded-2xl border border-border bg-card p-6">
-            <p class="text-sm font-semibold text-foreground">Homeowner Portal</p>
-            <p class="mt-1 text-sm text-muted-foreground">For maintenance requests, documents, and payments.</p>
+            <p class="text-sm font-semibold text-foreground">{portalCardTitle}</p>
+            <p class="mt-1 whitespace-pre-line text-sm text-muted-foreground">{portalBody}</p>
             <a href="https://app.allhoa.com/go/3c" target="_blank" rel="noreferrer" class="mt-3 inline-flex text-sm font-medium text-primary hover:underline">
-              Login to portal →
+              {portalLinkLabel}
             </a>
           </div>
         </div>
@@ -53,28 +70,28 @@ const successBody = site?.contactSuccessBody ?? "We'll be in touch within one bu
           <form id="contact-form" method="POST" action="/api/contact" class="space-y-6">
             <div class="grid gap-6 sm:grid-cols-2">
               <div>
-                <label for="name" class="mb-1.5 block text-sm font-medium text-foreground">Full name</label>
-                <input type="text" id="name" name="name" required
-                  class="w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                  placeholder="Your name" />
+                <label for="name" class={labelClass}>Full name</label>
+                <input type="text" id="name" name="name" required class={inputClass} placeholder="Your name" />
               </div>
               <div>
-                <label for="email" class="mb-1.5 block text-sm font-medium text-foreground">Email address</label>
-                <input type="email" id="email" name="email" required
-                  class="w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                  placeholder="you@example.com" />
+                <label for="email" class={labelClass}>Email address</label>
+                <input type="email" id="email" name="email" required class={inputClass} placeholder="you@example.com" />
+              </div>
+            </div>
+
+            <div class="grid gap-6 sm:grid-cols-2">
+              <div>
+                <label for="phone" class={labelClass}>Phone <span class="text-muted-foreground">(optional)</span></label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" class={inputClass} placeholder="(435) 555-0123" />
+              </div>
+              <div>
+                <label for="community" class={labelClass}>Community / HOA name <span class="text-muted-foreground">(optional)</span></label>
+                <input type="text" id="community" name="community" class={inputClass} placeholder="Your community or HOA name" />
               </div>
             </div>
 
             <div>
-              <label for="community" class="mb-1.5 block text-sm font-medium text-foreground">Community / HOA name <span class="text-muted-foreground">(optional)</span></label>
-              <input type="text" id="community" name="community"
-                class="w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                placeholder="Your community or HOA name" />
-            </div>
-
-            <div>
-              <label for="subject" class="mb-1.5 block text-sm font-medium text-foreground">Subject</label>
+              <label for="subject" class={labelClass}>Subject</label>
               <select id="subject" name="subject"
                 class="w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring">
                 <option value="">Select a topic…</option>
@@ -87,10 +104,47 @@ const successBody = site?.contactSuccessBody ?? "We'll be in touch within one bu
               </select>
             </div>
 
+            {/* Revealed once a subject other than "Other" is chosen — every field optional */}
+            <div id="property-details" hidden class="space-y-6 rounded-xl border border-border bg-secondary/40 p-6">
+              <p class="text-sm font-semibold text-foreground">
+                About your community <span class="font-normal text-muted-foreground">(all optional — it helps us prepare)</span>
+              </p>
+
+              <div class="grid gap-6 sm:grid-cols-2">
+                <div>
+                  <label for="duesAmount" class={labelClass}>Dues ($)</label>
+                  <input type="number" id="duesAmount" name="duesAmount" min="0" step="0.01" inputmode="decimal" class={inputClass} placeholder="250" />
+                </div>
+                <div>
+                  <label for="duesFrequency" class={labelClass}>Dues frequency</label>
+                  <select id="duesFrequency" name="duesFrequency"
+                    class="w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+                    <option value="">Select…</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="quarterly">Quarterly</option>
+                    <option value="yearly">Yearly</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="buildings" class={labelClass}># of Buildings</label>
+                  <input type="number" id="buildings" name="buildings" min="0" step="1" inputmode="numeric" class={inputClass} placeholder="3" />
+                </div>
+                <div>
+                  <label for="units" class={labelClass}># of Units</label>
+                  <input type="number" id="units" name="units" min="0" step="1" inputmode="numeric" class={inputClass} placeholder="48" />
+                </div>
+              </div>
+
+              <div>
+                <label for="amenities" class={labelClass}>Amenities</label>
+                <textarea id="amenities" name="amenities" rows={3} class={inputClass}
+                  placeholder="Pool, clubhouse, elevators, gated entry…" />
+              </div>
+            </div>
+
             <div>
-              <label for="message" class="mb-1.5 block text-sm font-medium text-foreground">Message</label>
-              <textarea id="message" name="message" rows={6} required
-                class="w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+              <label for="message" class={labelClass}>Message</label>
+              <textarea id="message" name="message" rows={6} required class={inputClass}
                 placeholder="Tell us about your community or question…" />
             </div>
 
@@ -122,6 +176,26 @@ const successBody = site?.contactSuccessBody ?? "We'll be in touch within one bu
   const successMessage = document.getElementById('success-message');
   const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
   const errorDiv = document.getElementById('form-error');
+
+  // Property details appear once a subject is picked, but stay hidden for "Other".
+  // Hidden fields are disabled so anything typed before switching isn't submitted,
+  // while the values survive in case the visitor switches back.
+  const subject = document.getElementById('subject') as HTMLSelectElement | null;
+  const details = document.getElementById('property-details');
+
+  const syncDetails = () => {
+    if (!subject || !details) return;
+    const show = subject.value !== '' && subject.value !== 'other';
+    details.hidden = !show;
+    details
+      .querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('input, select, textarea')
+      .forEach((field) => {
+        field.disabled = !show;
+      });
+  };
+
+  subject?.addEventListener('change', syncDetails);
+  syncDetails();
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
