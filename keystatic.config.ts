@@ -1,3 +1,4 @@
+import { createElement } from 'react';
 import { config, fields, singleton } from '@keystatic/core';
 
 export default config({
@@ -6,7 +7,28 @@ export default config({
     : { kind: 'local' },
 
   ui: {
-    brand: { name: '3c HOA CMS' },
+    brand: {
+      name: '3c HOA CMS',
+      mark: () => createElement('a', {
+        href: '/cms',
+        target: '_blank',
+        rel: 'noopener noreferrer',
+        style: {
+          display: 'inline-flex',
+          alignItems: 'center',
+          padding: '3px 10px',
+          background: '#16a34a',
+          color: '#fff',
+          borderRadius: '5px',
+          textDecoration: 'none',
+          fontSize: '11px',
+          fontWeight: '600',
+          fontFamily: 'system-ui, sans-serif',
+          whiteSpace: 'nowrap',
+          letterSpacing: '0.02em',
+        },
+      }, '↑ Publish'),
+    },
   },
 
   singletons: {

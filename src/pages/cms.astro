@@ -1,16 +1,69 @@
 ---
 export const prerender = false;
+const deploySecret = (Astro.locals.runtime as any)?.env?.DEPLOY_AUTH_SECRET ?? '';
 ---
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex" />
-    <title>3c HOA CMS</title>
-  </head>
-  <body>
-    <p>Redirecting to CMS…</p>
-    <script>window.location.href = '/keystatic';</script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Publish — 3c HOA CMS</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:#09090b;color:#e4e4e7;font-family:system-ui,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+    .card{background:#18181b;border:1px solid #27272a;border-radius:10px;padding:32px;max-width:400px;width:100%}
+    h1{font-size:17px;font-weight:600;margin-bottom:4px}
+    .sub{color:#71717a;font-size:13px;margin-bottom:24px;line-height:1.5}
+    .btn{display:flex;align-items:center;justify-content:center;padding:9px 18px;border-radius:6px;font-size:14px;font-weight:500;cursor:pointer;border:1px solid transparent;text-decoration:none;width:100%;margin-bottom:10px;font-family:inherit}
+    .preview{background:#27272a;border-color:#3f3f46;color:#e4e4e7}
+    .preview:hover{background:#3f3f46}
+    .deploy{background:#2563eb;border-color:#1d4ed8;color:#fff}
+    .deploy:hover:not(:disabled){background:#1d4ed8}
+    .deploy:disabled{opacity:.55;cursor:not-allowed}
+    #msg{font-size:13px;color:#71717a;margin-top:8px;min-height:18px;text-align:center}
+    .back{color:#52525b;font-size:13px;text-decoration:none;display:block;text-align:center;margin-top:20px}
+    .back:hover{color:#a1a1aa}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Publish</h1>
+    <p class="sub">Preview staging changes before pushing to production.</p>
+    <a href="https://staging.web-3choa.pages.dev" target="_blank" rel="noopener" class="btn preview">Open staging preview ↗</a>
+    <button id="deploy-btn" class="btn deploy">Deploy to Production</button>
+    <p id="msg"></p>
+    <a href="/keystatic/branch/staging" class="back">← Back to CMS</a>
+  </div>
+  <script define:vars={{ deploySecret }}>
+    document.getElementById('deploy-btn').addEventListener('click', async function() {
+      const btn = document.getElementById('deploy-btn');
+      const msg = document.getElementById('msg');
+      btn.disabled = true;
+      btn.textContent = 'Deploying…';
+      msg.textContent = '';
+      try {
+        const r = await fetch('/api/deploy', { method: 'POST', headers: { 'X-Deploy-Token': deploySecret } });
+        if (r.ok) {
+          btn.textContent = '✓ Triggered';
+          msg.textContent = 'Production build started — takes ~1 min';
+          setTimeout(() => {
+            btn.textContent = 'Deploy to Production';
+            btn.disabled = false;
+            msg.textContent = '';
+          }, 8000);
+        } else {
+          const d = await r.json().catch(() => ({}));
+          msg.textContent = d.error || 'Deploy failed';
+          btn.textContent = 'Deploy to Production';
+          btn.disabled = false;
+        }
+      } catch {
+        msg.textContent = 'Network error';
+        btn.textContent = 'Deploy to Production';
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
 </html>

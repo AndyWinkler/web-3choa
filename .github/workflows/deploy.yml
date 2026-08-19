@@ -1,0 +1,30 @@
+name: Deploy to Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy_to_production:
+        description: 'Merge staging into main (CF Pages auto-deploys)'
+        type: boolean
+        default: false
+
+jobs:
+  deploy:
+    if: ${{ github.event.inputs.deploy_to_production == 'true' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Merge staging into main
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git fetch origin staging
+          git merge origin/staging --no-edit -m "chore: deploy staging to production"
+          git push origin main
