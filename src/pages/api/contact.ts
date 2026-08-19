@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { pushToGcp } from '../../utils/gcp';
+import { pushToGcp } from '@globiz/gcp-ingest';
 
 export const prerender = false;
 
