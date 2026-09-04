@@ -8,3 +8,11 @@ contactSuccessBody: >-
   Thank you for reaching out to 3c HOA. Our team is reviewing your information
   and will be in touch shortly. Hang in there—help is on the way!
 contactPhoneCardTitle: Phone
+contactPhoneNumber: (435) 250-4150
+contactHoursCardTitle: Office Hours
+contactHoursBody: |-
+  Monday – Friday
+  9:00 AM – 5:00 PM
+contactPortalCardTitle: Homeowner Portal
+contactPortalBody: For maintenance requests, documents, and payments.
+contactPortalLinkLabel: Login to portal →
