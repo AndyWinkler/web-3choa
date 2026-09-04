@@ -9,19 +9,25 @@ import keystaticConfig from '../../keystatic.config';
 const reader = createReader(process.cwd(), keystaticConfig);
 const home = await reader.singletons.home.read();
 
-const heroHeadline = home?.heroHeadline ?? 'Community · Care · Connect';
-const heroSubline = home?.heroSubline ?? 'We provide customized property management services to elevate the value and efficiency of your community.';
-const heroCta = home?.heroCta ?? 'Get Started';
-const heroPortalLabel = home?.heroPortalLabel ?? 'Homeowner Portal';
+const heroHeadline = home?.heroHeadline || 'Community · Care · Connect';
+const heroSubline = home?.heroSubline || 'We provide customized property management services to elevate the value and efficiency of your community.';
+const heroCta = home?.heroCta || 'Get Started';
+const heroPortalLabel = home?.heroPortalLabel || 'Homeowner Portal';
 
-const whyHeadline = home?.whyHeadline ?? 'Why 3c HOA Management?';
-const whyBody = home?.whyBody ?? 'With over 10 years of community association management experience, we combine industry expertise with genuine care for every community we serve. We believe in transparent, proactive management that keeps boards informed and homeowners engaged.';
+const whyHeadline = home?.whyHeadline || 'Why 3c HOA Management?';
+const whyBody = home?.whyBody || 'With over 10 years of community association management experience, we combine industry expertise with genuine care for every community we serve. We believe in transparent, proactive management that keeps boards informed and homeowners engaged.';
+const whyBullets = home?.whyBullets?.length ? home.whyBullets : [
+  'Transparent communication with boards and homeowners',
+  'Proactive maintenance and financial stewardship',
+  'Community-specific, customized solutions',
+  '10+ years of HOA management expertise',
+];
 
-const ctaHeadline = home?.ctaHeadline ?? 'Ready to elevate your community?';
-const ctaSubline = home?.ctaSubline ?? "Let's talk about your community's unique needs.";
+const ctaHeadline = home?.ctaHeadline || 'Ready to elevate your community?';
+const ctaSubline = home?.ctaSubline || "Let's talk about your community's unique needs.";
 
-const testimonialsHeadline = home?.testimonialsHeadline ?? 'What our communities say';
-const testimonialsSubline = home?.testimonialsSubline ?? 'Boards and homeowners on what it’s like to work with 3c.';
+const testimonialsHeadline = home?.testimonialsHeadline || 'What our communities say';
+const testimonialsSubline = home?.testimonialsSubline || 'Boards and homeowners on what it’s like to work with 3c.';
 const testimonials = (home?.testimonials ?? []).filter((t) => t?.quote?.trim());
 
 // The track holds two identical groups and slides exactly one group width, so the
@@ -82,6 +88,7 @@ const marqueeSeconds = marqueeGroup.length * 12;
           { icon: '<path d="M3 22h18"/><path d="M6 18v-7"/><path d="M10 18v-7"/><path d="M14 18v-7"/><path d="M18 18v-7"/><path d="m12 2 9 6H3Z"/>', title: 'Special Assessment & Loan Management', desc: 'Navigate major capital funding hurdles with specialized lender sourcing, assessment structuring, and multi-year tracking.', href: '/services#special-assessment' },
           { icon: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m4.93 19.07 4.24-4.24"/>', title: 'HOA Financial Rescue & Forensic Accounting', desc: 'Untangle chaotic or neglected books with forensic auditing, reconciliation catch-up, and compliant collections recovery.', href: '/services#forensic-accounting' },
           { icon: '<path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/>', title: 'Developer Transition & Handover', desc: 'Protect your community\'s interests during the critical handover from builder to board with independent audits and operational setup.', href: '/services#developer-transition' },
+          { icon: '<path d="M11 12h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 14"/><path d="m7 18 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><path d="m2 13 6 6"/>', title: 'Self-Managed HOA Support', desc: 'Stay self-managed with professional-grade financials, an online payment portal, and organized records — plus expert help on the projects your volunteers shouldn\'t have to tackle alone.', href: '/services#self-managed' },
         ].map((svc) => (
           <a href={svc.href} class="group flex flex-col rounded-2xl border border-border bg-card p-8 shadow-[var(--shadow-soft)] transition-shadow hover:shadow-[var(--shadow-elevated)]">
             <div class="mb-4 text-gold">
@@ -104,12 +111,7 @@ const marqueeSeconds = marqueeGroup.length * 12;
           <h2 class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{whyHeadline}</h2>
           <p class="mt-6 text-lg text-muted-foreground">{whyBody}</p>
           <ul class="mt-8 space-y-4">
-            {[
-              'Transparent communication with boards and homeowners',
-              'Proactive maintenance and financial stewardship',
-              'Community-specific, customized solutions',
-              '10+ years of HOA management expertise',
-            ].map((point) => (
+            {whyBullets.map((point) => (
               <li class="flex items-start gap-3">
                 <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-nav">✓</span>
                 <span class="text-sm text-muted-foreground">{point}</span>

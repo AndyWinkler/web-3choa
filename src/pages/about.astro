@@ -10,12 +10,12 @@ import keystaticConfig from '../../keystatic.config';
 const reader = createReader(process.cwd(), keystaticConfig);
 const about = await reader.singletons.about.read();
 
-const heroHeadline = about?.heroHeadline ?? 'About 3c HOA Management';
-const heroSubline = about?.heroSubline ?? 'We believe every community deserves professional management built on integrity, care, and connection.';
-const missionHeadline = about?.missionHeadline ?? 'Our Mission';
-const missionBody = about?.missionBody ?? 'To provide transparent and effective management that puts our clients\' interests first — building communities where everyone feels at home.';
-const carissaTitle = about?.carissaTitle ?? 'Co-Founder & CEO';
-const carissaBio = about?.carissaBio ?? `Welcome to 3c HOA, where integrity, community, and care are at the heart of everything we do. I'm Carissa Cutler, Co-Founder and CEO, and I bring over 20 years of experience in real estate and a decade of expertise in community association management and owner representation to our company.
+const heroHeadline = about?.heroHeadline || 'About 3c HOA Management';
+const heroSubline = about?.heroSubline || 'We believe every community deserves professional management built on integrity, care, and connection.';
+const missionHeadline = about?.missionHeadline || 'Our Mission';
+const missionBody = about?.missionBody || 'To provide transparent and effective management that puts our clients\' interests first — building communities where everyone feels at home.';
+const carissaTitle = about?.carissaTitle || 'Co-Founder & CEO';
+const carissaBio = about?.carissaBio || `Welcome to 3c HOA, where integrity, community, and care are at the heart of everything we do. I'm Carissa Cutler, Co-Founder and CEO, and I bring over 20 years of experience in real estate and a decade of expertise in community association management and owner representation to our company.
 
 At 3c HOA, we believe in building strong, connected communities through transparent and effective management. Our commitment ensures that we always act in the best interests of our clients, establishing trust and long-lasting relationships.
 
@@ -24,7 +24,7 @@ Leveraging our connections with industry experts, we utilize the latest technolo
 We are dedicated to providing exceptional service and personalized solutions that meet the unique needs of each community we serve. Whether it's through proactive maintenance, efficient financial management, or furthering a sense of connection, our goal is to create communities where everyone feels at home.
 
 Thank you for considering 3c HOA as your trusted partner in HOA management. We look forward to working with you.`;
-const valuesHeadline = about?.valuesHeadline ?? 'Our Values';
+const valuesHeadline = about?.valuesHeadline || 'Our Values';
 const VALUE_ICONS = [
   '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
   '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/>',

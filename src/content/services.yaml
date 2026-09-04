@@ -19,6 +19,12 @@ pmBullets:
   - Routine and preventative maintenance coordination
   - Insurance and compliance oversight
   - Homeowner communications and portal management
+pmSidebarTitle: Who it's for
+pmSidebarItems:
+  - HOA Boards
+  - Transitioning to Professional Management
+  - Condo Associations
+  - Planned Unit Developments
 acctHeadline: Accounting & Financials
 acctBody: >-
   Trust is built on transparency. Whether you need reliable daily bookkeeping or
@@ -36,6 +42,12 @@ acctBullets:
   - Assessment collection and delinquency management
   - Bank reconciliation and financial reporting
   - Document storage via Owner's Portal
+acctSidebarTitle: What you get
+acctSidebarItems:
+  - Monthly financial statements
+  - Annual budget reports
+  - Delinquency reports
+  - Owner's Portal access
 ownersRepHeadline: Owner's Representative (Capital Projects)
 ownersRepBody: >-
   Don't navigate multi-million dollar roofing, paving, or deferred maintenance
@@ -49,6 +61,12 @@ ownersRepBullets:
   - Budget and fund management
   - Stakeholder coordination and progress reporting
   - Reserve study support and planning
+ownersRepSidebarTitle: Common projects
+ownersRepSidebarItems:
+  - Roofing & exterior repairs
+  - Pool & amenity renovations
+  - Road & parking resurfacing
+  - Common area upgrades
 insuranceHeadline: Insurance Claims Assistance
 insuranceBody: >-
   A major property damage claim shouldn't become a full-time job for your
@@ -67,6 +85,12 @@ insuranceBullets:
   - Insurance adjuster coordination
   - Repair vendor selection and oversight
   - Resolution tracking and communication
+insuranceSidebarTitle: Claim types we assist with
+insuranceSidebarItems:
+  - Storm & weather damage
+  - Fire & water damage
+  - Liability claims
+  - Property damage
 saHeadline: Special Assessment & Loan Management
 saBody: >-
   Funding major repairs shouldn't tear a community apart. We guide boards
@@ -119,4 +143,33 @@ devTransitionBullets:
   - Complete operational framework and accounting infrastructure setup
   - Vendor contract review and transitional continuity planning
   - Post-handover board training and governance onboarding
-devTransitionSidebarItems: []
+devTransitionSidebarTitle: Who it's for
+devTransitionSidebarItems:
+  - Newly constructed communities
+  - Master-planned developments
+  - Transitions from developer control
+  - Newly formed homeowner boards
+selfMgdHeadline: Self-Managed HOA Support
+selfMgdBody: >-
+  Some boards want to stay in the driver's seat — and should. We work behind the
+  scenes so your volunteers can run the community without running the back
+  office: professional books, a payment portal homeowners actually use, and
+  records that outlast board turnover.
+selfMgdBullets:
+  - >-
+    Professional-grade financials — monthly statements, reconciliations, and
+    reporting your board, auditors, and lenders can rely on
+  - Online payment portal for dues, assessments, and one-time payments
+  - Centralized records and institutional knowledge that survive board turnover
+  - >-
+    Full homeowner transparency into finances, service requests, and community
+    documents
+  - >-
+    Clean handoffs at every board transition — the next volunteer starts with
+    everything in place
+selfMgdSidebarTitle: Add on when you need it
+selfMgdSidebarItems:
+  - Capital project management & accounting
+  - HOA loan servicing
+  - Budget & reserve planning
+  - Annual meeting & budget season prep

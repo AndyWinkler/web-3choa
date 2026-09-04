@@ -4,7 +4,7 @@ import keystaticConfig from '../../keystatic.config';
 
 const reader = createReader(process.cwd(), keystaticConfig);
 const site = await reader.singletons.site.read();
-const footerTagline = site?.footerTagline ?? 'Providing customized HOA management services that elevate the value and efficiency of your community.';
+const footerTagline = site?.footerTagline || 'Providing customized HOA management services that elevate the value and efficiency of your community.';
 const year = new Date().getFullYear();
 ---
 
@@ -42,6 +42,7 @@ const year = new Date().getFullYear();
           <li><a href="/services#special-assessment" class="transition-colors hover:text-white">Special Assessment & Loan Management</a></li>
           <li><a href="/services#forensic-accounting" class="transition-colors hover:text-white">Financial Rescue & Forensic Accounting</a></li>
           <li><a href="/services#developer-transition" class="transition-colors hover:text-white">Developer Transition & Handover</a></li>
+          <li><a href="/services#self-managed" class="transition-colors hover:text-white">Self-Managed HOA Support</a></li>
         </ul>
       </div>
     </div>
