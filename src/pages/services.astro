@@ -10,11 +10,11 @@ import keystaticConfig from '../../keystatic.config';
 const reader = createReader(process.cwd(), keystaticConfig);
 const services = await reader.singletons.services.read();
 
-const heroHeadline = services?.heroHeadline ?? 'Our Services';
-const heroSubline = services?.heroSubline ?? 'Comprehensive HOA management solutions tailored to your community\'s unique needs.';
+const heroHeadline = services?.heroHeadline || 'Our Services';
+const heroSubline = services?.heroSubline || 'Comprehensive HOA management solutions tailored to your community\'s unique needs.';
 
-const pmHeadline = services?.pmHeadline ?? 'Property Management';
-const pmBody = services?.pmBody ?? 'We handle the full scope of community operations so your board can focus on big-picture goals. From running meetings to enforcing compliance, we keep your community running smoothly.';
+const pmHeadline = services?.pmHeadline || 'Property Management';
+const pmBody = services?.pmBody || 'We handle the full scope of community operations so your board can focus on big-picture goals. From running meetings to enforcing compliance, we keep your community running smoothly.';
 const pmBullets = services?.pmBullets?.length ? services.pmBullets : [
   'Board & homeowner meetings — scheduling, facilitation, and minutes',
   'Vendor & contract management',
@@ -23,8 +23,11 @@ const pmBullets = services?.pmBullets?.length ? services.pmBullets : [
   'Homeowner communication and portal management',
 ];
 
-const acctHeadline = services?.acctHeadline ?? 'Accounting';
-const acctBody = services?.acctBody ?? 'Sound financial management is the backbone of a healthy HOA. We provide complete accounting services with full transparency and easy access for board members.';
+const pmSidebarTitle = services?.pmSidebarTitle || "Who it's for";
+const pmSidebarItems = services?.pmSidebarItems?.length ? services.pmSidebarItems : ['HOA Boards', 'Transitioning to Professional Management', 'Condo Associations', 'Planned Unit Developments'];
+
+const acctHeadline = services?.acctHeadline || 'Accounting';
+const acctBody = services?.acctBody || 'Sound financial management is the backbone of a healthy HOA. We provide complete accounting services with full transparency and easy access for board members.';
 const acctBullets = services?.acctBullets?.length ? services.acctBullets : [
   'Annual budget preparation and management',
   'Accounts payable and receivable',
@@ -33,8 +36,11 @@ const acctBullets = services?.acctBullets?.length ? services.acctBullets : [
   'Secure document storage via the Owner\'s Portal',
 ];
 
-const ownersRepHeadline = services?.ownersRepHeadline ?? "Owner's Representative";
-const ownersRepBody = services?.ownersRepBody ?? 'When your community undertakes capital reserve projects, you need an experienced advocate in your corner. We manage the process from start to finish.';
+const acctSidebarTitle = services?.acctSidebarTitle || 'What you get';
+const acctSidebarItems = services?.acctSidebarItems?.length ? services.acctSidebarItems : ['Monthly financial statements', 'Annual budget reports', 'Delinquency reports', "Owner's Portal access"];
+
+const ownersRepHeadline = services?.ownersRepHeadline || "Owner's Representative";
+const ownersRepBody = services?.ownersRepBody || 'When your community undertakes capital reserve projects, you need an experienced advocate in your corner. We manage the process from start to finish.';
 const ownersRepBullets = services?.ownersRepBullets?.length ? services.ownersRepBullets : [
   'Capital reserve project management',
   'Stakeholder collaboration and communication',
@@ -43,8 +49,11 @@ const ownersRepBullets = services?.ownersRepBullets?.length ? services.ownersRep
   'Funding assistance and reserve study support',
 ];
 
-const insuranceHeadline = services?.insuranceHeadline ?? 'Insurance Claims Assistance';
-const insuranceBody = services?.insuranceBody ?? 'Navigating insurance claims is complex. We guide your community through every step — from initial filing to repair coordination — so you get the outcome you deserve.';
+const ownersRepSidebarTitle = services?.ownersRepSidebarTitle || 'Common projects';
+const ownersRepSidebarItems = services?.ownersRepSidebarItems?.length ? services.ownersRepSidebarItems : ['Roofing & exterior repairs', 'Pool & amenity renovations', 'Road & parking resurfacing', 'Common area upgrades'];
+
+const insuranceHeadline = services?.insuranceHeadline || 'Insurance Claims Assistance';
+const insuranceBody = services?.insuranceBody || 'Navigating insurance claims is complex. We guide your community through every step — from initial filing to repair coordination — so you get the outcome you deserve.';
 const insuranceBullets = services?.insuranceBullets?.length ? services.insuranceBullets : [
   'Claims filing guidance and documentation',
   'Adjuster coordination and advocacy',
@@ -52,8 +61,11 @@ const insuranceBullets = services?.insuranceBullets?.length ? services.insurance
   'Follow-up and resolution tracking',
 ];
 
-const saHeadline = services?.saHeadline ?? 'Special Assessment & Loan Management';
-const saBody = services?.saBody ?? 'We help boards navigate major capital funding hurdles smoothly and transparently.';
+const insuranceSidebarTitle = services?.insuranceSidebarTitle || 'Claim types we assist with';
+const insuranceSidebarItems = services?.insuranceSidebarItems?.length ? services.insuranceSidebarItems : ['Storm & weather damage', 'Fire & water damage', 'Liability claims', 'Property damage'];
+
+const saHeadline = services?.saHeadline || 'Special Assessment & Loan Management';
+const saBody = services?.saBody || 'We help boards navigate major capital funding hurdles smoothly and transparently.';
 const saBullets = services?.saBullets?.length ? services.saBullets : [
   'HOA-specific commercial lender sourcing and underwriting facilitation',
   'Specialized assessment structuring, billing, and clear tracking',
@@ -62,8 +74,8 @@ const saBullets = services?.saBullets?.length ? services.saBullets : [
   'Multi-year amortization tracking',
 ];
 
-const forensicHeadline = services?.forensicHeadline ?? 'HOA Financial Rescue & Forensic Accounting';
-const forensicBody = services?.forensicBody ?? 'We untangle chaotic, delayed, or neglected books to restore complete fiscal health.';
+const forensicHeadline = services?.forensicHeadline || 'HOA Financial Rescue & Forensic Accounting';
+const forensicBody = services?.forensicBody || 'We untangle chaotic, delayed, or neglected books to restore complete fiscal health.';
 const forensicBullets = services?.forensicBullets?.length ? services.forensicBullets : [
   'Historical auditing and reconstruction of neglected financial ledgers',
   'Comprehensive bank reconciliation backlog catch-up',
@@ -71,8 +83,8 @@ const forensicBullets = services?.forensicBullets?.length ? services.forensicBul
   'Clean baseline balancing for smooth ongoing operations',
 ];
 
-const devTransitionHeadline = services?.devTransitionHeadline ?? 'Developer Transition & Handover Services';
-const devTransitionBody = services?.devTransitionBody ?? "We protect the community's long-term interests during the critical handover from builder to board.";
+const devTransitionHeadline = services?.devTransitionHeadline || 'Developer Transition & Handover Services';
+const devTransitionBody = services?.devTransitionBody || "We protect the community's long-term interests during the critical handover from builder to board.";
 const devTransitionBullets = services?.devTransitionBullets?.length ? services.devTransitionBullets : [
   'Independent audit of developer financial records and initial reserves',
   'Complete operational framework and accounting infrastructure setup',
@@ -80,14 +92,27 @@ const devTransitionBullets = services?.devTransitionBullets?.length ? services.d
   'Post-handover board training and governance onboarding',
 ];
 
-const saSidebarTitle = services?.saSidebarTitle ?? 'Common scenarios';
+const selfMgdHeadline = services?.selfMgdHeadline || 'Self-Managed HOA Support';
+const selfMgdBody = services?.selfMgdBody || "Some boards want to stay in the driver's seat — and should. We work behind the scenes so your volunteers can run the community without running the back office: professional books, a payment portal homeowners actually use, and records that outlast board turnover.";
+const selfMgdBullets = services?.selfMgdBullets?.length ? services.selfMgdBullets : [
+  'Professional-grade financials — monthly statements, reconciliations, and reporting your board, auditors, and lenders can rely on',
+  'Online payment portal for dues, assessments, and one-time payments',
+  'Centralized records and institutional knowledge that survive board turnover',
+  'Full homeowner transparency into finances, service requests, and community documents',
+  'Clean handoffs at every board transition — the next volunteer starts with everything in place',
+];
+
+const saSidebarTitle = services?.saSidebarTitle || 'Common scenarios';
 const saSidebarItems = services?.saSidebarItems?.length ? services.saSidebarItems : ['Emergency structural repairs', 'Underfunded reserve shortfalls', 'Large-scale community renovations', 'Multi-year amortization tracking'];
 
-const forensicSidebarTitle = services?.forensicSidebarTitle ?? 'What you get';
+const forensicSidebarTitle = services?.forensicSidebarTitle || 'What you get';
 const forensicSidebarItems = services?.forensicSidebarItems?.length ? services.forensicSidebarItems : ['Forensic accounting audit report', 'Restructured balance sheets', 'Formal collection roadmaps', 'Realigned reserve fund strategy'];
 
-const devTransitionSidebarTitle = services?.devTransitionSidebarTitle ?? "Who it's for";
+const devTransitionSidebarTitle = services?.devTransitionSidebarTitle || "Who it's for";
 const devTransitionSidebarItems = services?.devTransitionSidebarItems?.length ? services.devTransitionSidebarItems : ['Newly constructed communities', 'Master-planned developments', 'Transitions from developer control', 'Newly formed homeowner boards'];
+
+const selfMgdSidebarTitle = services?.selfMgdSidebarTitle || 'Add on when you need it';
+const selfMgdSidebarItems = services?.selfMgdSidebarItems?.length ? services.selfMgdSidebarItems : ['Capital project management & accounting', 'HOA loan servicing', 'Budget & reserve planning', 'Annual meeting & budget season prep'];
 ---
 
 <Layout
@@ -117,9 +142,9 @@ const devTransitionSidebarItems = services?.devTransitionSidebarItems?.length ? 
           </ul>
         </div>
         <div class="rounded-2xl border border-border bg-secondary p-8 lg:p-12">
-          <p class="text-sm font-semibold text-foreground">Who it's for</p>
+          <p class="text-sm font-semibold text-foreground">{pmSidebarTitle}</p>
           <div class="mt-4 space-y-3">
-            {['HOA Boards', 'Self-Managed Communities', 'Condo Associations', 'Planned Unit Developments'].map((a) => (
+            {pmSidebarItems.map((a) => (
               <div class="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">{a}</div>
             ))}
           </div>
@@ -148,9 +173,9 @@ const devTransitionSidebarItems = services?.devTransitionSidebarItems?.length ? 
           </ul>
         </div>
         <div class="rounded-2xl border border-border bg-secondary p-8 lg:order-1 lg:p-12">
-          <p class="text-sm font-semibold text-foreground">What you get</p>
+          <p class="text-sm font-semibold text-foreground">{acctSidebarTitle}</p>
           <div class="mt-4 space-y-3">
-            {['Monthly financial statements', 'Annual budget reports', 'Delinquency reports', 'Owner\'s Portal access'].map((a) => (
+            {acctSidebarItems.map((a) => (
               <div class="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">{a}</div>
             ))}
           </div>
@@ -179,9 +204,9 @@ const devTransitionSidebarItems = services?.devTransitionSidebarItems?.length ? 
           </ul>
         </div>
         <div class="rounded-2xl border border-border bg-secondary p-8 lg:p-12">
-          <p class="text-sm font-semibold text-foreground">Common projects</p>
+          <p class="text-sm font-semibold text-foreground">{ownersRepSidebarTitle}</p>
           <div class="mt-4 space-y-3">
-            {['Roofing & exterior repairs', 'Pool & amenity renovations', 'Road & parking resurfacing', 'Common area upgrades'].map((a) => (
+            {ownersRepSidebarItems.map((a) => (
               <div class="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">{a}</div>
             ))}
           </div>
@@ -210,9 +235,9 @@ const devTransitionSidebarItems = services?.devTransitionSidebarItems?.length ? 
           </ul>
         </div>
         <div class="rounded-2xl border border-border bg-secondary p-8 lg:order-1 lg:p-12">
-          <p class="text-sm font-semibold text-foreground">Claim types we assist with</p>
+          <p class="text-sm font-semibold text-foreground">{insuranceSidebarTitle}</p>
           <div class="mt-4 space-y-3">
-            {['Storm & weather damage', 'Fire & water damage', 'Liability claims', 'Property damage'].map((a) => (
+            {insuranceSidebarItems.map((a) => (
               <div class="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">{a}</div>
             ))}
           </div>
@@ -272,9 +297,9 @@ const devTransitionSidebarItems = services?.devTransitionSidebarItems?.length ? 
           </ul>
         </div>
         <div class="rounded-2xl border border-border bg-secondary p-8 lg:p-12">
-          <p class="text-sm font-semibold text-foreground">What you get</p>
+          <p class="text-sm font-semibold text-foreground">{forensicSidebarTitle}</p>
           <div class="mt-4 space-y-3">
-            {['Forensic accounting audit report', 'Restructured balance sheets', 'Formal collection roadmaps', 'Realigned reserve fund strategy'].map((a) => (
+            {forensicSidebarItems.map((a) => (
               <div class="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">{a}</div>
             ))}
           </div>
@@ -306,6 +331,37 @@ const devTransitionSidebarItems = services?.devTransitionSidebarItems?.length ? 
           <p class="text-sm font-semibold text-foreground">{devTransitionSidebarTitle}</p>
           <div class="mt-4 space-y-3">
             {devTransitionSidebarItems.map((a) => (
+              <div class="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">{a}</div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="border-t border-border" />
+
+  {/* Self-Managed HOA Support */}
+  <section id="self-managed" class="py-20 sm:py-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-12 lg:grid-cols-2 lg:items-start">
+        <div>
+          <div class="mb-4 text-gold"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10"><path d="M11 12h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 14"/><path d="m7 18 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><path d="m2 13 6 6"/></svg></div>
+          <h2 class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{selfMgdHeadline}</h2>
+          <p class="mt-4 text-lg text-muted-foreground">{selfMgdBody}</p>
+          <ul class="mt-8 space-y-3">
+            {selfMgdBullets.map((point) => (
+              <li class="flex items-start gap-3">
+                <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-nav">✓</span>
+                <span class="text-sm text-muted-foreground">{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-border bg-secondary p-8 lg:p-12">
+          <p class="text-sm font-semibold text-foreground">{selfMgdSidebarTitle}</p>
+          <div class="mt-4 space-y-3">
+            {selfMgdSidebarItems.map((a) => (
               <div class="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">{a}</div>
             ))}
           </div>

@@ -10,10 +10,10 @@ import keystaticConfig from '../../keystatic.config';
 const reader = createReader(process.cwd(), keystaticConfig);
 const faqPage = await reader.singletons.faqPage.read();
 
-const heroHeadline = faqPage?.heroHeadline ?? 'Frequently asked questions';
-const heroSubline = faqPage?.heroSubline ?? 'Common questions about HOA management, our services, and working with 3c HOA Management.';
-const stillQuestionsHeading = faqPage?.stillQuestionsHeading ?? 'Still have questions?';
-const stillQuestionsBody = faqPage?.stillQuestionsBody ?? "We're happy to talk through your specific situation.";
+const heroHeadline = faqPage?.heroHeadline || 'Frequently asked questions';
+const heroSubline = faqPage?.heroSubline || 'Common questions about HOA management, our services, and working with 3c HOA Management.';
+const stillQuestionsHeading = faqPage?.stillQuestionsHeading || 'Still have questions?';
+const stillQuestionsBody = faqPage?.stillQuestionsBody || "We're happy to talk through your specific situation.";
 
 const defaultFaqs = [
   { question: 'What does an HOA management company do?', answer: 'An HOA management company handles the day-to-day operations of your community association — including board meetings, financial management, vendor coordination, compliance enforcement, and homeowner communications. We serve as the operational backbone so your board can focus on governance and community goals.' },
